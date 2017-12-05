@@ -4,7 +4,7 @@ subtitle: reactive dashboards in Python
 lang: eng
 author:
 - "[Julien M'Poy](https://github.com/groovytron)"
-date: "November 28th 2017, Haute École Arc Ingénierie,<br/>St-Imier"
+date: "December 5th 2017, Haute École Arc Ingénierie,<br/>St-Imier"
 ---
 
 ## Summary
@@ -161,3 +161,65 @@ This library is based on:
 ---
 
 ## Questions
+
+---
+
+## Simple code example
+
+Launch these commands from a terminal to install the Python packages:
+
+```bash
+pip install dash==0.19.0  # The core dash backend
+pip install dash-renderer==0.11.1  # The dash front-end
+pip install dash-html-components==0.8.0  # HTML components
+pip install dash-core-components==0.14.0  # Supercharged components
+pip install plotly --upgrade  # Latest Plotly graphing library
+```
+
+---
+
+## Simple code example
+
+Create a file named `app.py`:
+
+```python
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+
+app = dash.Dash()
+
+app.layout = html.Div(children=[
+    html.H1(children='Hello Dash'),
+
+    html.Div(children='''
+        Dash: A web application framework for Python.
+    '''),
+
+    dcc.Graph(
+        id='example-graph',
+        figure={
+            'data': [
+                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
+                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
+            ],
+            'layout': {
+                'title': 'Dash Data Visualization'
+            }
+        }
+    )
+])
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+---
+
+## Simple code example
+
+Run the app with the following command:
+
+```bash
+python app.py
+```
